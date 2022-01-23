@@ -1,7 +1,8 @@
 module Api
 class DocumentsController < ApplicationController
   def index
-    render json: { status: 'SUCCESS', message: 'Loaded posts' }
+    @documents = Document.all
+    # render json: { status: 'SUCCESS', message: 'Loaded posts' }
   end
 
   def show

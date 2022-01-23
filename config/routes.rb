@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # root 'api/documents#index', format: "json"
+  # namespace 'api', { format: "json" } do
+    # resources :documents
+  # end
   root 'api/documents#index'
   namespace 'api' do
     resources :documents
