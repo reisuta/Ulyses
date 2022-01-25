@@ -1,5 +1,6 @@
 import BuildRoute from './build_route'
+import DocumentIndex from '../views/documents/index'
 
 export default [
-  BuildRoute('/documents', '文書一覧', DocumentIndex),
+  BuildRoute('/', '文書一覧', DocumentIndex),
 ]

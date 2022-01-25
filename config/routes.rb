@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   # namespace 'api', { format: "json" } do
     # resources :documents
   # end
-  root 'api/documents#index'
-  namespace 'api' do
+  root 'pages#index'
+  namespace 'api', { format: "json" } do
     resources :documents
   end
   devise_for :users

@@ -12,6 +12,7 @@ export default {
     }
   }
 }
+console.log('hgake')
 </script>
 
 <style scoped>
