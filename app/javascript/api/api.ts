@@ -13,49 +13,49 @@ const headers = {
   'X-CSRF-TOKEN':     csrfToken(),
 }
 const baseURL = process.env.API_PREFIX ? `/api/${process.env.API_PREFIX}` : '/api'
-const paramsSerializer = (params) => Qs.stringify(convertSnakeCase(params), {
-  arrayFormat: 'brackets',
-  encode:      false,
-})
+// const paramsSerializer = (params) => Qs.stringify(convertSnakeCase(params), {
+//   arrayFormat: 'brackets',
+//   encode:      false,
+// })
 const api = Axios.create({
   headers,
   responseType: 'json',
   baseURL,
-  paramsSerializer,
+  // paramsSerializer,
 })
 
-api.interceptors.response.use(
-  (response) => {
-    if (response.data && response.data.message) {
-      Toastr.success(response.data.message)
-    }
-    return response.data
-  },
-  (error) => {
-    switch (error.response.status) {
-      case 401:
-        window.location.href = '/login'
-        break
-      case 422:
-        if (error.response.data.message) {
-          Toastr.error(error.response.data.message)
-        }
-        break
-      case 404:
-        Toastr.error('ページは存在しません。')
-        break
-      case 500:
-        Toastr.error('サーバー内部でエラーが発生しました。')
-        break
-      default:
-    }
-    return Promise.reject(error)
-  },
-)
+// api.interceptors.response.use(
+//   (response) => {
+//     if (response.data && response.data.message) {
+//       Toastr.success(response.data.message)
+//     }
+//     return response.data
+//   },
+//   (error) => {
+//     switch (error.response.status) {
+//       case 401:
+//         window.location.href = '/login'
+//         break
+//       case 422:
+//         if (error.response.data.message) {
+//           Toastr.error(error.response.data.message)
+//         }
+//         break
+//       case 404:
+//         Toastr.error('ページは存在しません。')
+//         break
+//       case 500:
+//         Toastr.error('サーバー内部でエラーが発生しました。')
+//         break
+//       default:
+//     }
+//     return Promise.reject(error)
+//   },
+// )
 
 export default {
   baseURL,
-  paramsSerializer,
+  // paramsSerializer,
   get:       (url: string, params: any): Promise<AxiosResponse<any>> => api.get(url, { params }),
   post:      (url: string, params: any): Promise<AxiosResponse<any>> => api.post(url, convetToFormData(params)),
   patch:     (url: string, params: any): Promise<AxiosResponse<any>> => api.patch(url, convetToFormData(params)),
