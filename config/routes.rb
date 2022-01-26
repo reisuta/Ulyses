@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  # root 'api/documents#index', format: "json"
-  # namespace 'api', { format: "json" } do
-    # resources :documents
-  # end
   root 'pages#index'
+  # devise_scope :user do
+    # get '/api/login', to: 'devise/sessions#new'
+  # end
+
   namespace 'api', { format: "json" } do
     resources :documents
   end
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # devise_for :users, controllers: {
+  #       sessions: 'users/sessions'
+  #     }
 end
