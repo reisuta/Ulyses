@@ -26,7 +26,7 @@ export default new Vuetify({
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     router,
-//    vuetify,
+    Vuetify,
     render: (h) => h(App),
   }).$mount('#app')
 })
