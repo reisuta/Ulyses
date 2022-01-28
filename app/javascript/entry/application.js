@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import router from '../configs/router'
-import App from '../views/documents/index.vue'
-console.log('jgjag')
+import App from '../layouts/application.vue'
 
 //vue_loader.jsの内容
 import Vuetify from 'vuetify'
@@ -25,10 +24,9 @@ export default new Vuetify({
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('ee')
   new Vue({
     router,
-    // vuetify,
+    Vuetify,
     render: (h) => h(App),
   }).$mount('#app')
 })

@@ -17,6 +17,7 @@ const baseURL = process.env.API_PREFIX ? `/api/${process.env.API_PREFIX}` : '/ap
 //   arrayFormat: 'brackets',
 //   encode:      false,
 // })
+const base = ''
 const api = Axios.create({
   headers,
   responseType: 'json',
@@ -24,6 +25,11 @@ const api = Axios.create({
   // paramsSerializer,
 })
 
+const api2 = Axios.create({
+  headers,
+  response: 'json',
+  base,
+})
 // api.interceptors.response.use(
 //   (response) => {
 //     if (response.data && response.data.message) {
@@ -57,6 +63,7 @@ export default {
   baseURL,
   // paramsSerializer,
   get:       (url: string, params: any): Promise<AxiosResponse<any>> => api.get(url, { params }),
+  get2:      (url: string, params: any): Promise<AxiosResponse<any>> => api2.get(url, { params }),
   post:      (url: string, params: any): Promise<AxiosResponse<any>> => api.post(url, convetToFormData(params)),
   patch:     (url: string, params: any): Promise<AxiosResponse<any>> => api.patch(url, convetToFormData(params)),
   destroy:   (url: string, params: any): Promise<AxiosResponse<any>> => api.delete(url, params),

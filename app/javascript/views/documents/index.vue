@@ -1,18 +1,16 @@
 <template>
-  <div id="app">
-
+  <div>
     <v-row dense>
       <v-col cols="12"> </v-col>
+      <p>Message is: {{ documents }}</p>
     </v-row>
     <v-row dense class="mt-0">
-      <v-col cols="2"> </v-col>
-      <v-col cols="1" class="d-flex justify-center align-end mb-2">
         <div>documents/index.vue</div>
-      </v-col>
-
-      <v-col cols="2"> </v-col>
-      <v-col cols="1" />
-      <v-col cols="4"> </v-col>
+    </v-row>
+    <v-row dense>
+      <router-link :to="`/documents/new`" >
+        文書作成
+      </router-link>
     </v-row>
   </div>
 </template>
@@ -23,16 +21,16 @@ import DocumentsApi from "@api/documents_api"
 export default {
   name: "DocumentIndex",
   components: {},
-  data: () => ({}),
+  data: () => ({
+    documents: [],
+  }),
   created() {
     this.loadDocuments()
     },
   methods: {
     loadDocuments() {
-      console.log('wjgew')
       DocumentsApi.index(this.$route.params.id).then((res) => {
-        console.log(res)
-        this.documents = res.records;
+        this.documents = res.data.records[0].title;
       });
     },
   },
