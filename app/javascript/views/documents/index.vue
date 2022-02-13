@@ -2,7 +2,13 @@
   <div>
     <v-row dense>
       <v-col cols="12"> </v-col>
-      <p>Message is: {{ documents }}</p>
+      <ul>
+        <li v-for="document in documents" :key="document.id">
+        {{ document.title }}
+        <br>
+        {{ document.body}}
+        </li>
+      </ul>
     </v-row>
     <v-row dense class="mt-0">
         <div>documents/index.vue</div>
@@ -30,7 +36,8 @@ export default {
   methods: {
     loadDocuments() {
       DocumentsApi.index(this.$route.params.id).then((res) => {
-        this.documents = res.data.records[0].title;
+        this.documents = res.data.records;
+        console.log(this.documents)
       });
     },
   },

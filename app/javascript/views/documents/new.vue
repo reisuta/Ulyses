@@ -1,11 +1,21 @@
 <template>
   <div>
-    <input
-      v-model="document"
-      type="text"
-      placeholder="本文を入力してください"
-    />
-    <button @click="createDocument">作成</button>
+    <v-col>
+      <v-text-field
+        v-model="document.title"
+        label="タイトルを入力してください"
+      />
+      <v-textarea 
+        v-model="document.body"
+        label="文章を作成してください"
+        auto-grow
+        />
+      <v-select
+        :items="items"
+        label="Category"
+      />
+    </v-col>
+    <v-btn @click="createDocument">作成</v-btn>
   </div>
 </template>
 
@@ -15,21 +25,24 @@ import DocumentsApi from "@api/documents_api";
 export default {
   name: "DocumentNew",
   data: () => ({
-    document: "",
+    document: {},
+    items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
   }),
+  created(){
+    this.loadDocument()
+  },
   methods: {
     loadDocument() {
       DocumentsApi.new(this.$route.query.source).then(
-        (res) => (this.document = res)
-      );
+        (res) => {
+          this.document = res.data.records
+          console.log(this.document)
+        });
     },
     createDocument() {
-      //this.errorFullMessages = [];
+      console.log(this.document)
       DocumentsApi.create(this.document)
-        .then(() => this.$router.push(`/documents`))
-        //.catch((error) => {
-         // this.errorFullMessages = error.response.data.errors.full_messages;
-         // window.scrollTo({ top: 0 });
+        .then(() => this.$router.push(`/`))
         },
     },
   }
