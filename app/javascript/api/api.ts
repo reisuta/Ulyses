@@ -4,8 +4,6 @@ import Axios, { AxiosResponse } from 'axios'
 import Qs from 'qs'
 import { csrfToken } from '@rails/ujs'
 import Toastr from 'toastr'
-// import convetToFormData from '../utils/convet_to_form_data'
-// import convertSnakeCase from '../utils/convert_to_snake_case'
 
 const headers = {
   ContentType:        'application/json',
@@ -64,8 +62,8 @@ export default {
   // paramsSerializer,
   get:       (url: string, params: any): Promise<AxiosResponse<any>> => api.get(url, { params }),
   get2:      (url: string, params: any): Promise<AxiosResponse<any>> => api2.get(url, { params }),
-  post:      (url: string, params: any): Promise<AxiosResponse<any>> => api.post(url, convetToFormData(params)),
-  patch:     (url: string, params: any): Promise<AxiosResponse<any>> => api.patch(url, convetToFormData(params)),
+  post:      (url: string, params: any): Promise<AxiosResponse<any>> => api.post(url, {params}),
+  patch:     (url: string, params: any): Promise<AxiosResponse<any>> => api.patch(url, {params}),
   destroy:   (url: string, params: any): Promise<AxiosResponse<any>> => api.delete(url, params),
   resources: (...prefixes: (string|number)[]): any => {
     const prefix = [].concat(...prefixes).join('/')
