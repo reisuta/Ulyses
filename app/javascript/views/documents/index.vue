@@ -7,6 +7,8 @@
         {{ document.title }}
         <br>
         {{ document.body}}
+	<br>
+	{{ document.category }}
         </li>
       </ul>
     </v-row>
