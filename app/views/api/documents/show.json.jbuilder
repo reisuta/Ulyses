@@ -1,6 +1,5 @@
 json.records do
-  json.array!(@documents) do |document|
-    json.extract! document, *%i[
+    json.extract! @document, *%i[
       id
       title
       body
@@ -13,4 +12,3 @@ json.records do
       updated_at
     ]
   end
-end
