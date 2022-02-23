@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.records do
   json.extract! @document, *%i[
     id
@@ -12,4 +14,3 @@ json.records do
     updated_at
   ]
 end
-

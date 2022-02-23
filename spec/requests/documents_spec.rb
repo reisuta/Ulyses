@@ -1,46 +1,47 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Documents", type: :request do
-  describe "GET /index" do
-    it "returns http success" do
-      get "/documents/index"
+RSpec.describe 'Documents', type: :request do
+  describe 'GET /index' do
+    it 'returns http success' do
+      get '/documents/index'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /show" do
-    it "returns http success" do
-      get "/documents/show"
+  describe 'GET /show' do
+    it 'returns http success' do
+      get '/documents/show'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /new" do
-    it "returns http success" do
-      get "/documents/new"
+  describe 'GET /new' do
+    it 'returns http success' do
+      get '/documents/new'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /update" do
-    it "returns http success" do
-      get "/documents/update"
+  describe 'GET /update' do
+    it 'returns http success' do
+      get '/documents/update'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /create" do
-    it "returns http success" do
-      get "/documents/create"
+  describe 'GET /create' do
+    it 'returns http success' do
+      get '/documents/create'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /edit" do
-    it "returns http success" do
-      get "/documents/edit"
+  describe 'GET /edit' do
+    it 'returns http success' do
+      get '/documents/edit'
       expect(response).to have_http_status(:success)
     end
   end
-
 end
