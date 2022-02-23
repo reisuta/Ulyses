@@ -110,9 +110,11 @@
     </v-row>
     <v-row dense class="mt-0"> </v-row>
   </div>
+  <!-- </SearchableTable> -->
 </template>
 
 <script>
+<<<<<<< HEAD
 import DocumentsApi from "@api/documents_api";
 
 export default {
@@ -131,7 +133,62 @@ export default {
         this.documents = res.data.records;
         this.nav = this.$route.meta.title + "ページ(googledoc の一覧参考)";
       });
+=======
+  import DocumentsApi from "@api/documents_api"
+  //import SearchableTable from '@components/search_list'
+
+  export default {
+    name:       'DocumentIndex',
+    //components: {
+     // DatePicker, SearchableTable, TextField, RadioButton, ProjectSelect,
+    //},
+    data:       () => ({
+      searchForm: {
+        text:            undefined,
+        created_at_from: undefined,
+        created_at_to:   undefined,
+        status:          'all',
+        category:        'all',
+      },
+      totalCount: 0,
+      approvals:   [],
+    }),
+    computed: {
+      statuses: () => ({
+        all:               'すべて',
+        temporarily_saved: '一時保存中',
+        pending:           '承認待ち',
+        permission:        '承認済み',
+        disconfirm:        '差し戻し',
+        invalid:           '取り消し',
+      }),
+      categories: () => ({
+        all:                   'すべて',
+        contract_relationship: '契約関係',
+        new_client:            '新規取引先',
+        consumables:           '消耗品',
+        other_purchasing:      'その他購買',
+        other:                 'その他',
+      }),
+      headers: () => ([
+        { text: '件名', width: '30%', value: 'name' },
+        { text: '種別', width: '15%', value: 'categoryI18n' },
+        { text: 'ステータス', width: '15%', value: 'statusI18n' },
+        { text: '作成者', width: '15%', value: 'createdUserName' },
+        { text: '作成日', width: '15%', value: 'createdAt', format: 'date' },
+      ]),
     },
-  },
-};
+    created() {
+      this.loadDocuments()
+>>>>>>> 64561301c2a9d7d6fc4b2a0d0b830b1d1dddf124
+    },
+    methods: {
+      loadDocuments() {
+        DocumentsApi.index(this.$route.params.id).then((res) => {
+          this.documents = res.data.records;
+          console.log(this.documents.title)
+        });
+      },
+    },
+  }
 </script>
