@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Api
   class DocumentsController < ApplicationController
     def index
@@ -15,7 +13,10 @@ module Api
       @document = Document.new
     end
 
-    def update; end
+    def update
+      @document = Document.find(params[:id])
+      @document.update(document_params)
+    end
 
     def create
       @document = Document.new(document_params)

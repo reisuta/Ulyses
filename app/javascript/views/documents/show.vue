@@ -5,27 +5,40 @@
         v-model="document.title"
         label="文書タイトル"
         class="mt-2 mb-3"
-	:disabled="!editmode"
+        :disabled="!editmode"
       />
       <v-textarea
         v-model="document.body"
         label="本文"
         class="mb-3"
         auto-grow
-	:disabled="!editmode"
+        :disabled="!editmode"
       />
-      <v-select 
-	v-model="document.category"
-	:items="items" 
-	label="Category" 
-	:disabled="!editmode"
-	/>
+      <!-- <v-select -->
+      <!--   v-model="document.category" -->
+      <!--   :items="items" -->
+      <!--   label="Category" -->
+      <!--   :disabled="!editmode" -->
+      <!-- /> -->
     </v-col>
     <v-col>
-	    <v-select :status="status" label="文書タイプ" :disabled="!editmode" />
+      <!-- <v-select :status="status" label="文書タイプ" :disabled="!editmode" /> -->
     </v-col>
-    <v-btn  class="ml-3 mr-2" color="primary" @click="editmode=true">編集</v-btn>
-    <v-btn @click="editmode=false">キャンセル</v-btn>
+    <v-btn
+      v-if="!editmode"
+      class="ml-3 mr-2"
+      color="primary"
+      @click="editmode = true"
+      >編集</v-btn
+    >
+    <v-btn
+      v-if="editmode"
+      class="ml-3 mr-2"
+      color="primary"
+      @click="updateDocument"
+      >更新</v-btn
+    >
+    <v-btn v-if="editmode" @click="editmode = false">キャンセル</v-btn>
   </div>
 </template>
 
@@ -35,7 +48,7 @@ export default {
   name: "DocumentShow",
   data: () => ({
     document: null,
-	  editmode: false,
+    editmode: false,
   }),
   created() {
     this.loadDocument();
@@ -46,11 +59,12 @@ export default {
         this.document = res.data.records;
       });
     },
-	  editDocument(){
-		  this.editmode = true
-		  console.log('jel')
-
-	  }
+    updateDocument() {
+      DocumentsApi.update(this.document.id, this.document).then(() => {
+        this.loadDocument();
+        this.editmode = false;
+      });
+    },
   },
 };
 </script>
