@@ -5,5 +5,6 @@ export default {
   new:          (id) => Api.get('documents/new', { source: id }),
   show:         (id) => Api.get(`documents/${id}`, {}),
   create:       (documentParams) => Api.post('documents', { document: documentParams }),
+  update:       (id, documentParams) => Api.patch(`documents/${id}`, { document: documentParams }),
   me:           () => Api.get2('sign_in', {}),
 }
