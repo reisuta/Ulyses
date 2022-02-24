@@ -1,5 +1,8 @@
 <template>
   <div>
+    <v-alert v-if="error" border="bottom" color="pink darken-1" dark>
+      {{ errorMessage }}
+    </v-alert>
     <v-col>
       <v-text-field
         v-model="document.title"
@@ -12,11 +15,7 @@
         class="mb-3"
         auto-grow
       />
-      <v-select 
-	v-model="document.category"
-	:items="items" 
-	label="Category" 
-	/>
+      <v-select v-model="document.category" :items="items" label="Category" />
     </v-col>
     <v-col>
       <v-select :status="status" label="文書タイプ" />
@@ -32,6 +31,8 @@ export default {
   name: "DocumentNew",
   data: () => ({
     document: {},
+    error: false,
+	  errorMessage: [],
     items: ["Foo", "Bar", "Fizz", "Buzz"],
   }),
   created() {
@@ -41,12 +42,16 @@ export default {
     loadDocument() {
       DocumentsApi.new(this.$route.query.source).then((res) => {
         this.document = res.data.records;
-        console.log(this.document);
       });
     },
     createDocument() {
-      console.log(this.document);
-      DocumentsApi.create(this.document).then(() => this.$router.push(`/`));
+      DocumentsApi.create(this.document)
+        .then(() => {
+          this.$router.push(`/`);
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors);
+        });
     },
   },
 };
