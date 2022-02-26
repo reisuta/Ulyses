@@ -30,6 +30,11 @@ module Api
 
     def edit; end
 
+    def destroy
+      @document = Document.find(params[:id])
+      @document.destroy
+    end
+
     private
 
     def document_params

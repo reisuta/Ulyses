@@ -12,6 +12,7 @@
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </v-toolbar>
+
       <router-view />
     </div>
   </v-app>
