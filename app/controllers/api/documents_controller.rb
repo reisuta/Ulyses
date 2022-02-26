@@ -20,10 +20,20 @@ module Api
 
     def create
       @document = Document.new(document_params)
-      @document.save!
+      if @document.valid?
+        @document.save!
+        render json: @document, status: :ok
+      else
+        render json: { errors: @document.errors }, status: :unprocessable_entity
+      end
     end
 
     def edit; end
+
+    def destroy
+      @document = Document.find(params[:id])
+      @document.destroy
+    end
 
     private
 
