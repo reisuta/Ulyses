@@ -5,7 +5,6 @@ module Api
     end
 
     def show
-      #binding.pry
       @document = Document.find(params[:id])
     end
 

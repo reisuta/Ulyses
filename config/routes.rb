@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # devise_scope :user do
   # get '/api/login', to: 'devise/sessions#new'
   # end
-
   namespace 'api', { format: 'json' } do
     resources :documents
   end

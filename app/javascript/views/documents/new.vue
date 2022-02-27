@@ -13,11 +13,7 @@
         />
       </v-col>
       <v-col cols="2">
-        <v-select
-          v-model="document.category"
-          :items="items"
-          label="Category"
-        />
+        <v-select v-model="document.category" :items="items" label="Category" />
       </v-col>
       <!-- <v-col cols="2"> -->
       <!--   <v-select :status="status" label="文書タイプ" /> -->
@@ -32,13 +28,15 @@
     <v-col>
       <v-textarea
         v-model="document.body"
+        auto-grow
         label="文章を作成してください"
         class="mb-3 mx-auto"
+        outlined
+        background-color="#ff99ff50"
         :style="styleObj"
-        color="green"
+        color="purple lighten-3"
         rows="30"
         clearable
-        auto-grow
       />
     </v-col>
   </div>
@@ -52,11 +50,9 @@ export default {
   name: "DocumentNew",
   data: () => ({
     styleObj: {
-      color: "white",
       width: "75%",
-      //backgroundColor: "#ff99ff13",
-      backgroundColor: 'red',
-      fontSize: "24px",
+      borderRadius: "15px",
+      fontSize: "15px",
     },
     document: {},
     error: false,
@@ -70,7 +66,6 @@ export default {
     initialDocument() {
       DocumentsApi.new(this.$route.query.source).then((res) => {
         this.document = res.data.records;
-        console.log(this.document)
       });
     },
     createDocument() {
@@ -78,7 +73,7 @@ export default {
         .then((res) => {
           this.doc = res.data.id;
           console.log(this.doc);
-          this.$router.push(`/documents/${this.doc}`)
+          this.$router.push(`/documents/${this.doc}`);
         })
         .catch((error) => {
           console.log(error.response.data.errors);
