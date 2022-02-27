@@ -6,7 +6,11 @@ import App from '../layouts/application.vue'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 import VueCompositionApi from '@vue/composition-api'
+import Sticky from 'vue-sticky-directive'
+import moment from 'moment';
 
+moment().format();
+Vue.use(Sticky)
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 Vue.use(VueCompositionApi)
