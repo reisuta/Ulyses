@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Api
   class DocumentsController < ApplicationController
     def index
@@ -7,7 +5,6 @@ module Api
     end
 
     def show
-      #binding.pry
       @document = Document.find(params[:id])
     end
 
@@ -15,14 +12,27 @@ module Api
       @document = Document.new
     end
 
-    def update; end
+    def update
+      @document = Document.find(params[:id])
+      @document.update(document_params)
+    end
 
     def create
       @document = Document.new(document_params)
-      @document.save!
+      if @document.valid?
+        @document.save!
+        render json: @document, status: :ok
+      else
+        render json: { errors: @document.errors }, status: :unprocessable_entity
+      end
     end
 
     def edit; end
+
+    def destroy
+      @document = Document.find(params[:id])
+      @document.destroy
+    end
 
     private
 

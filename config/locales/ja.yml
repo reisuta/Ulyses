@@ -1,0 +1,7 @@
+ja:
+  enums:
+    document:
+      status:
+        unpublished: 未公開
+        published: 公開
+        done: 完成
