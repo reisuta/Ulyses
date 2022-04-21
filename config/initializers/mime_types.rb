@@ -5,6 +5,6 @@
 # Mime::Type.register "text/richtext", :rtf
 Mime::Type.register "application/pdf", :pdf
 WickedPdf.config = {
- :exe_path => "#{Gem.loaded_specs['wkhtmltopdf-binary'].full_gem_path}/bin/wkhtmltopdf"
-  enable_local_file_access: true
+ :exe_path => "#{Gem.loaded_specs['wkhtmltopdf-binary'].full_gem_path}/bin/wkhtmltopdf",
+ enable_local_file_access: true
 }
